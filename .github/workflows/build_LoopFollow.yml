@@ -26,8 +26,10 @@ jobs:
       - name: Install dependencies from Gemfile
         run: bundle install
 
-      - name: Install CocoaPods
-        run: sudo gem install cocoapods
+      - name: Install CocoaPods with compatible xcodeproj
+        run: |
+          sudo gem install cocoapods
+          sudo gem install xcodeproj --pre
 
       - name: Run pod install
         run: pod install
