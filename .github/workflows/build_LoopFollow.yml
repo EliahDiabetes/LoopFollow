@@ -37,8 +37,10 @@ jobs:
           cd ..
           sudo gem install cocoapods
 
-      - name: Run pod install
-        run: pod install
+      - name: Run pod install (fallback to git repo)
+        run: |
+          pod repo remove trunk || true
+          pod install --repo-update
 
       - name: Build with Fastlane
         run: bundle exec fastlane build_LoopFollow
