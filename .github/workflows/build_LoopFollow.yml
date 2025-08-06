@@ -29,7 +29,12 @@ jobs:
       - name: Install CocoaPods with updated xcodeproj
         run: |
           sudo gem uninstall xcodeproj -aIx || true
-          sudo gem install xcodeproj -v 1.28.0
+          sudo gem install rake
+          git clone https://github.com/CocoaPods/Xcodeproj.git
+          cd Xcodeproj
+          gem build xcodeproj.gemspec
+          sudo gem install xcodeproj-*.gem
+          cd ..
           sudo gem install cocoapods
 
       - name: Run pod install
