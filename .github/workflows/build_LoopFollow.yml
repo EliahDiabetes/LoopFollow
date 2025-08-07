@@ -13,17 +13,21 @@ jobs:
 
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: 3.3
+          ruby-version: 3.3.0
+          bundler-cache: true
 
-      - name: Set up Ruby with Bundler
+      - name: Install Bundler and dependencies
         run: |
           gem install bundler
           bundle install
+
+      - name: Install Fastlane
+        run: gem install fastlane
 
       - name: Run pod install (via Bundler)
         run: bundle exec pod install
